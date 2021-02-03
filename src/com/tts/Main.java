@@ -112,5 +112,50 @@ public class Game2048 extends Game {
         return result;
     }
 }
+    private boolean mergeRow(int[]row) {
+
+        boolean changed = false;
+        for (int i = 1; i <SIDE; i++){
+            if (row[i-1] == row [i] && row[i] != 0) {
+                row[i-1] = row[i] * 2;
+                row[i] = 0;
+                changed = true;
+            }
+        }
+        return changed;
+    }
+    @Override
+    public void onKeyPress(Key key) {
+    switch(key) {
+            case LEFT:
+            moveLeft();
+            break;
+            case RIGHT:
+            moveRight();
+            break;
+            case UP:
+            moveUp();
+            break;
+            case DOWN:
+            moveDown();
+            break;
+default:
+        return;
+
+        }
+        }
+private void moveLeft(){
+
+        }
+private void moveRight(){
+
+        }
+private void moveUp(){
+
+        }
+private void moveDown(){
+
+        }
+        }
 
 
