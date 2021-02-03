@@ -13,6 +13,8 @@ public class Game2048 extends Game {
         setScreenSize(SIDE, SIDE);
         createGame();
         drawScene();
+        moveLeft();
+        drawScene();
     }
     private void createGame(){
         createNewNumber();
@@ -111,7 +113,6 @@ public class Game2048 extends Game {
         }
         return result;
     }
-}
     private boolean mergeRow(int[]row) {
 
         boolean changed = false;
@@ -126,36 +127,56 @@ public class Game2048 extends Game {
     }
     @Override
     public void onKeyPress(Key key) {
-    switch(key) {
+        switch(key) {
             case LEFT:
-            moveLeft();
-            break;
+                moveLeft();
+                drawScene();
+                break;
             case RIGHT:
-            moveRight();
-            break;
+                moveRight();
+                drawScene();
+                break;
             case UP:
-            moveUp();
-            break;
+                moveUp();
+                drawScene();
+                break;
             case DOWN:
-            moveDown();
-            break;
-default:
-        return;
+                moveDown();
+                drawScene();
+                break;
+            default:
+                return;
 
         }
-        }
-private void moveLeft(){
+    }
+//    STEP 10:
+    private void moveLeft(){
 
-        }
-private void moveRight(){
+        boolean ifCompress = false;
+        boolean ifMerge = false;
+        boolean needNewNumber = false;
 
+        for (int[] row: gameField){
+            ifCompress = compressRow(row);
+            ifMerge = mergeRow(row);
+            if(ifMerge){
+                compressRow(row);
+            }
+            if(ifCompress || ifMerge){
+                needNewNumber = true;
+            }
         }
-private void moveUp(){
-
+        if(needNewNumber){
+            createNewNumber();
         }
-private void moveDown(){
+    }
+    private void moveRight(){
 
-        }
-        }
+    }
+    private void moveUp(){
 
+    }
+    private void moveDown(){
 
+    }
+}
